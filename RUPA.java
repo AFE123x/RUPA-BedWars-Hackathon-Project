@@ -17,6 +17,7 @@ public class RUPA {
         heapsort(teams, team.sortbyindex);
         //
         System.out.println("place the following files : judge1.txt, judge2.txt, judge3.txt, judge4.txt (must be in same folder as program.)");
+        inputscanner.nextLine();
         addpoints("judge1.txt");
         addpoints("judge2.txt");
         addpoints("judge3.txt");
@@ -114,8 +115,8 @@ public class RUPA {
             max.insert(teams[i]);
         }
         for(int i = 0; i < teams.length-8; i++){
-            teams[0] = max.delMax();
-            teams[0].racepoints += 5;
+            teams[i] = max.delMax();
+            teams[i].racepoints += 5;
         }
         team [] eight = new team[8];
         for(int i = 0; i < 8; i++){
