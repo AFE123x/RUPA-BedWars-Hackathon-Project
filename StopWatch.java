@@ -77,7 +77,9 @@ public class StopWatch extends JFrame {
     closeTimer.setRepeats(false); // Set it to fire only once
     setVisible(true);
   }
-
+  /*
+   * Actual stopwatch method that calculates time with System.currenTimeMillis(). 
+   */
   private void startStop() {
     if (!running) {
       running = true;
@@ -107,7 +109,9 @@ public class StopWatch extends JFrame {
       closeTimer.restart();
     }
   }
-
+  /*
+   * Updates the JLabel object, timeLabel, based on the time elapsed. 
+   */
   private void updateTimeLabel(long time) {
     long hours = time / 3600000;
     long minutes = (time % 3600000) / 60000;
@@ -116,7 +120,9 @@ public class StopWatch extends JFrame {
     String formattedTime = String.format("%02d:%02d:%02d.%03d", hours, minutes, seconds, milliseconds);
     timeLabel.setText(formattedTime);
   }
-
+  /*
+   * Returns the elapsed time to the race method. 
+   */
   public long getElapsedTime() {
     return elapsedTime;
   }

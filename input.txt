@@ -1,11 +1,11 @@
 10	
-a	1
-b	6
-c	5
-d	5
-e	1
-f	5
-g	5
-h	1
-i	1
-j	1
+TeamA 1
+TeamB 6
+TeamC 5
+TeamD 5
+TeamE 1
+TeamF 5
+TeamG 5
+TeamH 1
+TeamI 1
+TeamJ 1

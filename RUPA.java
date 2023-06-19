@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.time.Year;
 import java.util.Comparator;
 import java.util.Scanner;
-
-
-
+/*This file contains the main method for this program. This is the program to run.  */
 public class RUPA {
   private static team [] teams;
   private static Scanner inputscanner = new Scanner(System.in);
@@ -43,6 +41,10 @@ public class RUPA {
     
 
   }
+  /*This method writes the results, or anystring to a new notepad file
+   * named, "results2023", where 2023 can be replaced with whatever year.
+   * Automatically tracked. 
+   */
    public static void writeToTextFile(String content, String filePath) {
     try {
       // If filePath is null or empty, set the default file name
@@ -61,7 +63,7 @@ public class RUPA {
       e.printStackTrace();
     }
   }
-
+  /*Makes the calculations for donations */
   private static void donations(){
     heapsort(teams,team.compareByDonations);
     teams[teams.length-1].donationpoints += 30;
@@ -100,6 +102,9 @@ public class RUPA {
       fufu[i] = max.delMax();
     }
   }
+  /*
+   * This method scans the text file, "input.txt", which will contain the name of the teams, and the number of donations. 
+   */
   private static void populate(){ 
     int size = filescanner.nextInt();
     teams = new team[size];
@@ -110,6 +115,10 @@ public class RUPA {
       teams[i].index = i;
     }
   }
+  /*
+   * Reads the data from Judge text files. First, the scanner reads the size of the data.
+   *  Afterwards, it reads the bed points, then uniform points. 
+   */
   private static void addpoints(String filename) throws FileNotFoundException, InterruptedException{
     Scanner s = new Scanner(new File(filename));
     int size = s.nextInt();
@@ -132,7 +141,14 @@ public class RUPA {
     }
 
   }
-  private static void timerboi(team T) throws InterruptedException{
+  /*
+   * This method opens up the StopWatch GUI, and puts the time into the  
+   * Priority Queue. 
+   * 
+   * To-Do: Try and optimize program, so it kills the program before restarting. 
+   * Lag is apparent. 
+   */
+  private static void Stopwatchmethod(team T) throws InterruptedException{
     StopWatch sw = new StopWatch(T.teamname);
     while (!sw.kill) {
     Thread.sleep(10);
@@ -141,11 +157,14 @@ public class RUPA {
       sw.closeStopWatch();
       max.insert(T);
   }
+  /*
+   * Actual race method. 
+   */
   private static void race() throws InterruptedException{
     System.out.println("Round 1!");
     max = new MaxPQ(teams.length, team.compareByTime);
     for(int i = 0; i < teams.length; i++){
-      timerboi(teams[i]);
+      Stopwatchmethod(teams[i]);
     }
     for(int i = 0; i < teams.length-8; i++){
       teams[i] = max.delMax();
@@ -159,7 +178,7 @@ public class RUPA {
     max = new MaxPQ(8, team.compareByTime);
     int asdf = 1;
     for(team a : eight){
-       timerboi(a);
+       Stopwatchmethod(a);
       asdf++;
     }
     for(int i = teams.length - 8; i < teams.length - 4; i++){
@@ -174,7 +193,7 @@ public class RUPA {
     max = new MaxPQ(four.length, team.compareByTime);
     asdf = 1;
     for(team a : four){
-      timerboi(a);
+      Stopwatchmethod(a);
       asdf++;
     }
     for(int i = teams.length - 4; i < teams.length - 2; i++){
@@ -189,7 +208,7 @@ public class RUPA {
     max = new MaxPQ(2, team.compareByTime);
     asdf = 0;
     for(team a : two){
-      timerboi(a);
+      Stopwatchmethod(a);
       asdf++;
     }
     teams[teams.length - 2] = max.delMax();
@@ -200,12 +219,10 @@ public class RUPA {
 
 
   }
-  public static String formatDuration(long millis) {
-    long seconds = millis / 1000;
-    long minutes = seconds / 60;
-    seconds = seconds % 60;
-    return String.format("%02dmin%02dsec", minutes, seconds);
-  } 
+  /*
+   * Simply returns the ranking based off of a number paramter. 
+   * For example, inputting 1 will return 1st, 2 will return 2nd, etc.
+   */
   public static String getOrdinalNumber(int number) {
   String ordinalSuffix;
 
